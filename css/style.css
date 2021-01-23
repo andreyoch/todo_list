@@ -1,0 +1,37 @@
+:root {
+  --main-font: 'Rubik', sans-serif;
+  --main-color: #e72525;
+  --main-background-color: #fcfcfc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  background-color: var(--main-color);
+}
+
+.logo {
+  margin-left: 70px;
+  color: #ffffff;
+  font-family: var(--main-font);
+  font-size: 65px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.search-input_container {
+  max-width: 500px;
+  margin: 0 15px;
+}
+.search-input {
+  width: 90%;
+  height: 66px;
+  border-radius: 50px;
+  outline: none;
+  font-size: 35px;
+  font-family: var(--main-font);
+  border: none;
+  background: #ffffff;
+  padding: 0 10px 0 20px;
+}
