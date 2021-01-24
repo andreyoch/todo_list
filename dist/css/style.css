@@ -70,6 +70,77 @@
   transition: max-height 0.2s ease-out;
 }
 
+.content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Styles for main page*/
+.title {
+  margin: 52px 0 82px 0;
+  text-align: center;
+  color: #979797;
+  font-family: var(--main-font);
+  font-size: 53px;
+  text-transform: uppercase;
+}
+
+.main-page_row {
+  margin: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 507px;
+  height: 98px;
+  font-family: var(--main-font);
+  border: 5px solid #e72525;
+  border-radius: 20px;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.project:hover {
+  background-color: var(--main-background-color);
+}
+.project_title {
+  font-size: 35px;
+}
+
+.project_number-of-tasks {
+  margin-top: 10px;
+  font-size: 21px;
+}
+
+.project_btns {
+  display: none;
+  padding: 10px 0;
+}
+
+.project-active {
+  display: block;
+}
+
+.edit-btn,
+.remove-btn {
+  padding: 10px 0;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  font-family: var(--main-font);
+  font-size: 20px;
+  width: 100px;
+}
+.edit-btn {
+  margin-right: 10px;
+}
 @media (min-width: 600px) {
   .mobile-menu-window {
     display: none;
@@ -83,6 +154,9 @@
   }
   header > .search-input_container {
     display: none;
+  }
+  .main-page_row {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
