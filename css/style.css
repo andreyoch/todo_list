@@ -13,7 +13,7 @@
 }
 
 .logo {
-  margin-left: 70px;
+  margin-left: 50px;
   color: #ffffff;
   font-family: var(--main-font);
   font-size: 65px;
@@ -27,11 +27,39 @@
 .search-input {
   width: 90%;
   height: 66px;
-  border-radius: 50px;
+  border-radius: 30px;
   outline: none;
   font-size: 35px;
   font-family: var(--main-font);
   border: none;
   background: #ffffff;
   padding: 0 10px 0 20px;
+}
+
+.burger-icon {
+  display: none;
+  margin-right: 10px;
+}
+
+@media(max-width:600px) {
+  .search-input_container {
+    display: none;
+  }
+  .burger-icon {
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+@media(max-width:400px) {
+  .logo {
+    margin-left: 10px;
+    font-size: 55px;
+  }   
+}
+
+@media(max-width:330px) {
+  .logo {
+    font-size: 50px;
+  }
 }
