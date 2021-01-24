@@ -8,6 +8,7 @@ function createProjectElement(projectName) {
 
   const projectNumberOfTasks = document.createElement('div');
   projectNumberOfTasks.className = 'project_number-of-tasks';
+  projectNumberOfTasks.textContent = 'Tasks: 0';
 
   const projectActiveBtns = document.createElement('div');
   projectActiveBtns.className = 'project_btns';
@@ -39,4 +40,9 @@ function createProjectElement(projectName) {
   return project;
 }
 
-export {createProjectElement}
+function updateNumberOfTasks(projectElement, numberOfTasks) {
+  const numberOfTasksElement = projectElement.querySelector('project_number-of-tasks');
+  numberOfTasks.textContent = `Tasks: ${numberOfTasks}`;
+}
+
+export {createProjectElement,updateNumberOfTasks}
