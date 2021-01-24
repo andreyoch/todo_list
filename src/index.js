@@ -1,20 +1,24 @@
 import { activateMobileMenu } from './mobile-menu';
-import {activateEditProjectModal} from './modals'
+import { activateEditProjectModal } from './modals';
 
 activateMobileMenu();
 activateEditProjectModal();
 
-const project = document.querySelector('.project');
+const projects = document.querySelectorAll('.project');
 const projectBtns = document.querySelector('.project_btns');
-project.addEventListener('mouseenter', () => {
-  projectBtns.style = 'display: block';
-  project.style = 'height: 140px';
-});
 
-project.addEventListener('mouseleave', () => {
-  projectBtns.style = 'display: none';
-  project.style = 'height: 98px';
-});
+projects.forEach((project) =>
+  project.addEventListener('mouseenter', (e) => {
+    const projectBtns = project.querySelector('.project_btns');
+    project.style = 'height: 140px';
+    projectBtns.style = 'display: block';
+  })
+);
 
-
-
+projects.forEach((project) =>
+  project.addEventListener('mouseleave', (e) => {
+    const projectBtns = project.querySelector('.project_btns');
+    project.style = 'height: 98px';
+    projectBtns.style = 'display: none';
+  })
+);
