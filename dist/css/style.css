@@ -141,6 +141,24 @@
 .edit-btn {
   margin-right: 10px;
 }
+
+.btn-container {
+  margin: 20px 10px;
+  text-align: center;
+}
+.add-project-btn {
+padding: 15px ;
+color: #ffffff;
+font-family: var(--main-font);
+font-size: 30px;
+font-weight: 700;
+text-transform: uppercase;
+text-align: center;
+outline: none;
+border: none;
+border-radius: 50px;
+background-color: #e72525;
+}
 @media (min-width: 600px) {
   .mobile-menu-window {
     display: none;
