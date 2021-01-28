@@ -45,7 +45,7 @@ function activateProjectBtns() {
 
       addProjectToPage(createProjectElement(projectName));
       addProjectModal.style = 'display: none';
-    });
+    },{once:true});
   });
 
   //If user click oustide window - close window
