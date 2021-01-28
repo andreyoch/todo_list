@@ -1,3 +1,4 @@
+
 function activateProjectBtns() {
   const removeProjectModal = document.querySelector('.remove-modal-window');
   const editProjectBtn = document.querySelectorAll('.edit-btn');
@@ -6,6 +7,14 @@ function activateProjectBtns() {
   const editModalCloseBtn = editProjectModal.querySelector('.edit-modal-close');
   const removeModalCloseBtn = removeProjectModal.querySelector(
     '.remove-modal-close'
+  );
+  const addProjectBtn = document.querySelector('.main-page_add-project-btn');
+  const addProjectModal = document.querySelector(
+    '.main-page_add-project-modal'
+  );
+  const addProjectNameFieldModal = addProjectModal.querySelector('.add-modal-window_name-field');
+  const createProjectModalBtn = addProjectModal.querySelector(
+    '.create-modal-window_btn'
   );
 
   editProjectBtn.forEach((btn) =>
@@ -25,6 +34,17 @@ function activateProjectBtns() {
     () => (removeProjectModal.style = 'display: none')
   );
 
+  addProjectBtn.addEventListener('click', () => {
+    addProjectModal.style = 'display: block';
+
+
+    createProjectModalBtn.addEventListener('click', () => {
+      
+      const projectName = addProjectNameFieldModal.value;
+      console.log(projectName)
+    });
+  });
+
   //If user click oustide window - close window
   window.addEventListener('click', (e) => {
     if (
@@ -41,6 +61,12 @@ function activateProjectBtns() {
       'main-page_remove-project-modal-window remove-modal-window modal-window'
     ) {
       removeProjectModal.style = 'display: none';
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target.className === 'main-page_add-project-modal modal-window') {
+      addProjectModal.style = 'display: none';
     }
   });
 }

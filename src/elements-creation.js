@@ -1,3 +1,4 @@
+
 function createProjectElement(projectName) {
   const project = document.createElement('div');
   project.className = 'main-page_project project';
@@ -41,8 +42,15 @@ function createProjectElement(projectName) {
 }
 
 function updateNumberOfTasks(projectElement, numberOfTasks) {
-  const numberOfTasksElement = projectElement.querySelector('project_number-of-tasks');
+  const numberOfTasksElement = projectElement.querySelector(
+    'project_number-of-tasks'
+  );
   numberOfTasks.textContent = `Tasks: ${numberOfTasks}`;
 }
 
-export {createProjectElement,updateNumberOfTasks}
+function addProjectToPage(projectElement) {
+  const mainPageRow = document.querySelector('.main-page_row');
+  mainPageRow.append(projectElement);
+}
+
+export { createProjectElement, updateNumberOfTasks, addProjectToPage };
