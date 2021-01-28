@@ -12,11 +12,15 @@ function activateEditProjectModal() {
       nameField.value = projectName.textContent;
       editProjectModal.style = 'display:block';
 
-      editProjectModalBtn.addEventListener('click', () => {
-        //Update project name(grab value from name field)
-        projectName.textContent = nameField.value;
-        editProjectModal.style = 'display:none';
-      });
+      editProjectModalBtn.addEventListener(
+        'click',
+        () => {
+          //Update project name(grab value from name field)
+          projectName.textContent = nameField.value;
+          editProjectModal.style = 'display:none';
+        },
+        { once: true }
+      );
     })
   );
 
