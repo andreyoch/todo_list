@@ -1,11 +1,18 @@
-
-function activateEditProjectModal() {
+function activateProjectBtns() {
+  const removeProjectModal = document.querySelector('.remove-modal-window');
   const editProjectBtn = document.querySelectorAll('.edit-btn');
+  const removeProjectBtn = document.querySelectorAll('.remove-btn');
   const editProjectModal = document.querySelector('.edit-modal-window');
-  const editModalCloseBtn = editProjectModal.querySelector('.close');
+  const editModalCloseBtn = editProjectModal.querySelector('.edit-modal-close');
+  const removeModalCloseBtn = removeProjectModal.querySelector(
+    '.remove-modal-close'
+  );
 
   editProjectBtn.forEach((btn) =>
     btn.addEventListener('click', editProjectName)
+  );
+  removeProjectBtn.forEach((btn) =>
+    btn.addEventListener('click', showProjectDeleteConfirmation)
   );
 
   editModalCloseBtn.addEventListener(
@@ -13,13 +20,27 @@ function activateEditProjectModal() {
     () => (editProjectModal.style = 'display: none')
   );
 
+  removeModalCloseBtn.addEventListener(
+    'click',
+    () => (removeProjectModal.style = 'display: none')
+  );
+
   //If user click oustide window - close window
   window.addEventListener('click', (e) => {
     if (
       e.target.className ===
-      'main-page_edit-project-modal-window edit-modal-window'
+      'main-page_edit-project-modal-window edit-modal-window modal-window'
     ) {
       editProjectModal.style = 'display: none';
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (
+      e.target.className ===
+      'main-page_remove-project-modal-window remove-modal-window modal-window'
+    ) {
+      removeProjectModal.style = 'display: none';
     }
   });
 }
@@ -43,4 +64,14 @@ function editProjectName(e) {
     { once: true }
   );
 }
-export { activateEditProjectModal };
+function showProjectDeleteConfirmation(e) {
+  const removeProjectModal = document.querySelector('.remove-modal-window');
+  const project = e.target.parentElement.parentElement;
+  const projectName = project.querySelector('.project_title').textContent;
+  let removeProjectModalTitle = removeProjectModal.querySelector(
+    '.remove-modal-window_title'
+  );
+  removeProjectModalTitle.textContent = `Are you sure to delete "${projectName}"?`;
+  removeProjectModal.style = 'display: block';
+}
+export { activateProjectBtns };
