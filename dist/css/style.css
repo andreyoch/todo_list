@@ -117,7 +117,7 @@
   font-size: 21px;
 }
 .project_id {
-  display:none;
+  display: none;
 }
 
 .project_btns {
@@ -165,7 +165,7 @@
   background-color: #e72525;
 }
 .modal-window {
-  display: none; 
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -210,7 +210,7 @@
 }
 .name-field-modal {
   margin-top: 30px;
-  width: 100%   ;
+  width: 100%;
   height: 92px;
   border-radius: 20px;
   background-color: #ffffff;
@@ -229,12 +229,13 @@
   font-size: 30px;
   text-align: center;
 }
-.remove-project-modal_no-btn,.remove-project-modal_yes-btn {
+.remove-project-modal_no-btn,
+.remove-project-modal_yes-btn {
   width: 90px;
 }
 .remove-project-modal_no-btn {
   background-color: #fff;
-  color:var(--main-color);
+  color: var(--main-color);
   margin-right: 20px;
 }
 @media (min-width: 600px) {
@@ -267,7 +268,8 @@
   .logo {
     font-size: 50px;
   }
-  .main-btn,.modal-title {
+  .main-btn,
+  .modal-title {
     font-size: 25px;
   }
 }
