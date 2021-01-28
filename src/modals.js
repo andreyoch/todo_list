@@ -71,7 +71,7 @@ function showProjectDeleteConfirmation(e) {
   let removeProjectModalTitle = removeProjectModal.querySelector(
     '.remove-modal-window_title'
   );
-  removeProjectModalTitle.textContent = `Are you sure to delete "${projectName}"?`;
+  removeProjectModalTitle.textContent = `Are you sure to delete "${projectName}" project?`;
   removeProjectModal.style = 'display: block';
 }
 export { activateProjectBtns };
