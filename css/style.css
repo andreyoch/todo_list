@@ -162,8 +162,8 @@
   border-radius: 50px;
   background-color: #e72525;
 }
-.edit-modal-window {
-   display: none; 
+.modal-window {
+  display: none; 
   position: fixed;
   z-index: 1;
   left: 0;
@@ -197,7 +197,7 @@
     color: var(--main-color);
   }
 }
-.edit-modal-window_content {
+.modal-content {
   text-align: center;
   background-color: var(--main-background-color);
   margin: 15% auto;
