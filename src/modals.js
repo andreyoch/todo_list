@@ -68,10 +68,30 @@ function showProjectDeleteConfirmation(e) {
   const removeProjectModal = document.querySelector('.remove-modal-window');
   const project = e.target.parentElement.parentElement;
   const projectName = project.querySelector('.project_title').textContent;
+  const noBtn = removeProjectModal.querySelector(
+    '.remove-project-modal_no-btn'
+  );
+  const yesBtn = removeProjectModal.querySelector(
+    '.remove-project-modal_yes-btn'
+  );
   let removeProjectModalTitle = removeProjectModal.querySelector(
     '.remove-modal-window_title'
   );
-  removeProjectModalTitle.textContent = `Are you sure to delete "${projectName}" project?`;
+  removeProjectModalTitle.innerHTML = `Are you sure to delete <br>"${projectName}" project?`;
   removeProjectModal.style = 'display: block';
+
+  noBtn.addEventListener(
+    'click',
+    () => (removeProjectModal.style = 'display: none')
+  );
+  yesBtn.addEventListener(
+    'click',
+    () => {
+      project.remove();
+      removeProjectModal.style = 'display: none';
+      console.log(`${projectName} was removed!`);
+    },
+    { once: true }
+  );
 }
 export { activateProjectBtns };
