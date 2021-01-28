@@ -146,8 +146,10 @@
 }
 
 .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px 10px;
-  text-align: center;
 }
 .main-btn {
   padding: 15px;
@@ -177,7 +179,8 @@
 
 .close {
   color: #aaa;
-  float: right;
+  position: relative;
+  left: 45%;
   font-size: 60px;
   font-weight: bold;
 }
@@ -220,6 +223,20 @@
 .edit-modal-window_btn {
   margin-bottom: 30px;
 }
+
+.modal-title {
+  font-family: var(--main-font);
+  font-size: 30px;
+  text-align: center;
+}
+.remove-project-modal_no-btn,.remove-project-modal_yes-btn {
+  width: 90px;
+}
+.remove-project-modal_no-btn {
+  background-color: #fff;
+  color:var(--main-color);
+  margin-right: 20px;
+}
 @media (min-width: 600px) {
   .mobile-menu-window {
     display: none;
@@ -249,5 +266,8 @@
 @media (max-width: 330px) {
   .logo {
     font-size: 50px;
+  }
+  .main-btn,.modal-title {
+    font-size: 25px;
   }
 }
