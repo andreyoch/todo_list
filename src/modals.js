@@ -1,4 +1,4 @@
-
+import { createProjectElement, addProjectToPage } from './elements-creation';
 function activateProjectBtns() {
   const removeProjectModal = document.querySelector('.remove-modal-window');
   const editProjectBtn = document.querySelectorAll('.edit-btn');
@@ -12,7 +12,9 @@ function activateProjectBtns() {
   const addProjectModal = document.querySelector(
     '.main-page_add-project-modal'
   );
-  const addProjectNameFieldModal = addProjectModal.querySelector('.add-modal-window_name-field');
+  const addProjectNameFieldModal = addProjectModal.querySelector(
+    '.add-modal-window_name-field'
+  );
   const createProjectModalBtn = addProjectModal.querySelector(
     '.create-modal-window_btn'
   );
@@ -37,11 +39,12 @@ function activateProjectBtns() {
   addProjectBtn.addEventListener('click', () => {
     addProjectModal.style = 'display: block';
 
-
     createProjectModalBtn.addEventListener('click', () => {
-      
       const projectName = addProjectNameFieldModal.value;
-      console.log(projectName)
+      addProjectNameFieldModal.value = ''
+
+      addProjectToPage(createProjectElement(projectName));
+      addProjectModal.style = 'display: none';
     });
   });
 

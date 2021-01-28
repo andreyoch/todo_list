@@ -26,8 +26,8 @@ function createProjectElement(projectName) {
 
   project.append(projectTitle, projectNumberOfTasks, projectActiveBtns);
 
-  const project = document.querySelector('.project');
-  const projectBtns = document.querySelector('.project_btns');
+ 
+  const projectBtns = project.querySelector('.project_btns');
   project.addEventListener('mouseenter', () => {
     projectBtns.style = 'display: block';
     project.style = 'height: 140px';
