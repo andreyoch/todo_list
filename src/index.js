@@ -35,10 +35,19 @@ function renderProjectsElements() {
   );
 }
 
-expandIcon.addEventListener('click',()=> {
-  expandIcon.classList.toggle('expand-icon-expanded')
-  
-  expandIcon.addEventListener('click',()=> {
-    expandIcon.classList.toggle('expand-icon-normal');
-  },{once:true})
-})
+expandIcon.addEventListener('click', (e) => {
+  expandIcon.classList.toggle('expand-icon-expanded');
+  const task = e.target.parentElement.parentElement.parentElement;
+  task.classList.toggle('expanded-task');
+  const expandedContent = document.querySelector(
+    '.task-expanded_content-normal'
+  );
+  expandedContent.classList.toggle('task-expanded_content-expanded');
+  expandIcon.addEventListener(
+    'click',
+    () => {
+      expandIcon.classList.toggle('expand-icon-normal');
+    },
+    { once: true }
+  );
+});
