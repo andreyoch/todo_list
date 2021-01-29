@@ -26,9 +26,19 @@ projects.forEach((project) =>
 
 renderProjectsElements();
 
+const expandIcon = document.querySelector('.expand-icon');
+
 function renderProjectsElements() {
   const projects = Storage.getProjects();
   projects.forEach((project) =>
     addProjectToPage(createProjectElement(project.projectName, project.id))
   );
 }
+
+expandIcon.addEventListener('click',()=> {
+  expandIcon.classList.toggle('expand-icon-expanded')
+  
+  expandIcon.addEventListener('click',()=> {
+    expandIcon.classList.toggle('expand-icon-normal');
+  },{once:true})
+})

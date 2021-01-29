@@ -282,12 +282,12 @@
   background-color: #19de97;
   border-radius: 20px;
 }
-.expand-icon-normal {
-  animation: rotate-icon 0.5s linear forwards;
-  -webkit-animation: rotate-icon 0.5s linear forwards;
+.expand-icon-expanded {
+  animation: expand-icon 0.5s linear forwards;
+  -webkit-animation: expand-icon 0.5s linear forwards;
 }
 
-@keyframes rotate-icon {
+@keyframes expand-icon {
   0% {
     transform: rotate(0);
   }
@@ -296,12 +296,12 @@
   }
 }
 
-.expand-icon-expanded {
-  animation: rotate-icon-expanded 0.5s linear forwards;
-  -webkit-animation: rotate-icon-expanded 0.5s linear forwards;
+.expand-icon-normal {
+  animation: rotate-icon-to-normal 0.5s linear forwards;
+  -webkit-animation: rotate-icon-to-normal 0.5s linear forwards;
 }
 
-@keyframes rotate-icon-expanded {
+@keyframes rotate-icon-to-normal{
   0% {
     transform: rotate(180deg);
   }
