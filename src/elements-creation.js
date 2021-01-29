@@ -1,5 +1,5 @@
 import { Storage } from './classes';
-function createProjectElement(projectName,objectProjectId) {
+function createProjectElement(projectName, objectProjectId) {
   const project = document.createElement('div');
   project.className = 'main-page_project project';
 
@@ -31,7 +31,12 @@ function createProjectElement(projectName,objectProjectId) {
   projectId.textContent = objectProjectId;
   projectId.className = 'project-id';
 
-  project.append(projectTitle, projectNumberOfTasks, projectActiveBtns,projectId);
+  project.append(
+    projectTitle,
+    projectNumberOfTasks,
+    projectActiveBtns,
+    projectId
+  );
 
   const projectBtns = project.querySelector('.project_btns');
   project.addEventListener('mouseenter', () => {
@@ -43,7 +48,7 @@ function createProjectElement(projectName,objectProjectId) {
     projectBtns.style = 'display: none';
     project.style = 'height: 98px';
   });
- 
+
   return project;
 }
 
@@ -74,7 +79,7 @@ function editProjectName(e) {
       //Update project name(grab value from name field)
       projectName.textContent = nameField.value;
       const projectId = project.querySelector('.project-id').textContent;
-      Storage.updateProjectName(projectId,nameField.value)
+      Storage.updateProjectName(projectId, nameField.value);
       editProjectModal.style = 'display:none';
     },
     { once: true }
@@ -114,4 +119,104 @@ function showProjectDeleteConfirmation(e) {
   );
 }
 
-export { createProjectElement, updateNumberOfTasks, addProjectToPage };
+function createTaskElement(taskName, taskObjectId) {
+  const task = document.createElement('div');
+  task.className = 'task';
+
+  const taskUpperElementsRow = document.createElement('div');
+  taskUpperElementsRow.className = 'task_upper-elements-row';
+
+  const checkboxInput = document.createElement('input');
+  checkboxInput.type = 'checkbox'
+  checkboxInput.className = 'task_checkbox';
+  
+
+  const taskTitle = document.createElement('div');
+  taskTitle.className = 'task_title';
+  taskTitle.textContent = taskName;
+  const taskPriorityLine = document.createElement('div');
+  taskPriorityLine.className = 'task-priority-line';
+
+  taskTitle.append(taskPriorityLine);
+
+  const taskPriorityBlock = document.createElement('div');
+  taskPriorityBlock.className = 'task_priority-block';
+
+  const imgIconContainer = document.createElement('div');
+  imgIconContainer.className = 'img-container';
+
+  const icon = document.createElement('img');
+  icon.className = 'expand-icon';
+  icon.src = 'img/expand.png';
+  icon.alt = 'expand-icon';
+
+  imgIconContainer.append(icon);
+
+  taskUpperElementsRow.append(
+    checkboxInput,
+    taskTitle,
+    taskPriorityBlock,
+    imgIconContainer
+  );
+
+  //Create expanded content task block
+  const taskExpandedContent = document.createElement('div');
+  taskExpandedContent.className = 'task-expanded_content-normal';
+
+  const taskDescriptionInput = document.createElement('input');
+  taskDescriptionInput.className = 'task-expanded_description';
+  taskDescriptionInput.type = 'text';
+  // taskDescriptionInput.attributes('disabled');
+
+  const taskDueDate = document.createElement('div');
+  taskDueDate.className = 'task-expanded_due-date';
+  taskDueDate.textContent = 'Due: 10/11/2025';
+
+  const taskBtnsRow = document.createElement('div');
+  taskBtnsRow.className = 'task-expanded_btns-row';
+
+  const editBtn = document.createElement('div');
+  editBtn.className = 'task_expanded-edit-btn task-expanded_btn';
+  editBtn.textContent = 'Edit';
+
+  const removeBtn = document.createElement('div');
+  removeBtn.className = 'task_expanded-remove-btn task-expanded_btn';
+  removeBtn.textContent = 'Remove';
+
+  taskBtnsRow.append(editBtn, removeBtn);
+
+  const taskId = document.createElement('span');
+  taskId.className = 'task_id';
+  taskId.textContent = taskObjectId;
+
+  taskExpandedContent.append(taskDescriptionInput, taskDueDate, taskBtnsRow);
+
+  task.append(taskUpperElementsRow, taskExpandedContent, taskId);
+
+  //Animation for imgIconContainer
+
+  imgIconContainer.addEventListener('click', (e) => {
+    imgIconContainer.classList.toggle('expand-icon-expanded');
+    task.classList.toggle('expanded-task');
+    taskExpandedContent.classList.toggle('task-expanded_content-expanded');
+    taskUpperElementsRow.classList.toggle('task_upper-elements-expanded');
+    imgIconContainer.addEventListener(
+      'click',
+      () => {
+        imgIconContainer.classList.toggle('expand-icon-normal');
+        task.classList.toggle('decreaseHeight');
+      },
+      { once: true }
+    );
+  });
+
+  return task;
+}
+
+function addTaskElementToPage(task) {
+  const projectPageRow = document.querySelector('.project-page_row');
+
+  projectPageRow.append(task)
+}
+
+export { createProjectElement, updateNumberOfTasks, addProjectToPage,createTaskElement, addTaskElementToPage };

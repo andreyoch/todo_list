@@ -1,7 +1,12 @@
 import { activateMobileMenu } from './mobile-menu';
 import { activateModals } from './modals';
 import { Project, Storage } from './classes';
-import { createProjectElement, addProjectToPage } from './elements-creation';
+import {
+  createProjectElement,
+  addProjectToPage,
+  createTaskElement,
+  addTaskElementToPage,
+} from './elements-creation';
 
 activateMobileMenu();
 activateModals();
@@ -43,8 +48,10 @@ expandIcon.addEventListener('click', (e) => {
     '.task-expanded_content-normal'
   );
   expandedContent.classList.toggle('task-expanded_content-expanded');
-  const taskUpperElementsRow = document.querySelector('.task_upper-elements-row');
-  taskUpperElementsRow.classList.toggle('task_upper-elements-expanded')
+  const taskUpperElementsRow = document.querySelector(
+    '.task_upper-elements-row'
+  );
+  taskUpperElementsRow.classList.toggle('task_upper-elements-expanded');
   expandIcon.addEventListener(
     'click',
     () => {
@@ -54,3 +61,8 @@ expandIcon.addEventListener('click', (e) => {
     { once: true }
   );
 });
+
+const task1 = createTaskElement('MyTask',19);
+console.log(task1)
+
+addTaskElementToPage(task1);
