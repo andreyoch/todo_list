@@ -1,11 +1,12 @@
 import { activateMobileMenu } from './mobile-menu';
 import { activateModals } from './modals';
+import { Project, Storage } from './classes';
+import {createProjectElement,addProjectToPage} from './elements-creation';
 
 activateMobileMenu();
 activateModals();
 
 const projects = document.querySelectorAll('.project');
-const projectBtns = document.querySelector('.project_btns');
 
 projects.forEach((project) =>
   project.addEventListener('mouseenter', (e) => {
@@ -22,3 +23,10 @@ projects.forEach((project) =>
     projectBtns.style = 'display: none';
   })
 );
+
+renderProjectsElements()
+
+function renderProjectsElements() {
+  const projects = Storage.getProjects();
+  projects.forEach (project => addProjectToPage(createProjectElement(project.projectName)))
+}
