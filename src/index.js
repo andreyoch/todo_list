@@ -43,10 +43,13 @@ expandIcon.addEventListener('click', (e) => {
     '.task-expanded_content-normal'
   );
   expandedContent.classList.toggle('task-expanded_content-expanded');
+  const taskUpperElementsRow = document.querySelector('.task_upper-elements-row');
+  taskUpperElementsRow.classList.toggle('task_upper-elements-expanded')
   expandIcon.addEventListener(
     'click',
     () => {
       expandIcon.classList.toggle('expand-icon-normal');
+      task.classList.toggle('decreaseHeight');
     },
     { once: true }
   );
