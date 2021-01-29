@@ -76,6 +76,9 @@
 }
 
 /* Styles for main page*/
+.main-page {
+  display: none;
+}
 .title {
   margin: 52px 0 82px 0;
   text-align: center;
@@ -91,7 +94,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
-.project {
+.project,.task {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,19 +111,19 @@
 .project:hover {
   background-color: var(--main-background-color);
 }
-.project_title {
+.project_title,.task_title {
   font-size: 35px;
 }
 
-.project_number-of-tasks {
+.project_number-of-tasks,.task_due-date {
   margin-top: 10px;
   font-size: 21px;
 }
-.project_id {
+.project_id,.task_id {
   display: none;
 }
 
-.project_btns {
+.project_btns,.task_btns {
   display: none;
   padding: 10px 0;
 }
@@ -147,7 +150,7 @@
   margin-right: 10px;
 }
 
-.btn-container {
+.btn-container,.project-page_btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,6 +243,22 @@
   color: var(--main-color);
   margin-right: 20px;
 }
+
+/*Styles for project page */
+.project-page_row {
+  display: flex;
+  justify-content: center;
+}
+
+.task_title {
+  padding: 0 10px;
+}
+
+.upper-elements-row {
+  display: flex;
+  align-items: center;
+}
+
 @media (min-width: 600px) {
   .mobile-menu-window {
     display: none;
