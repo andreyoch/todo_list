@@ -128,7 +128,9 @@
 .project-active {
   display: block;
 }
-
+.project-id {
+  display: none;
+}
 .edit-btn,
 .remove-btn {
   padding: 10px 0;
