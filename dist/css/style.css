@@ -283,8 +283,8 @@
   border-radius: 20px;
 }
 .expand-icon-expanded {
-  animation: expand-icon 0.5s linear forwards;
-  -webkit-animation: expand-icon 0.5s linear forwards;
+  animation: expand-icon 0.3s linear forwards;
+  -webkit-animation: expand-icon 0.3s linear forwards;
 }
 
 @keyframes expand-icon {
@@ -297,8 +297,8 @@
 }
 
 .expand-icon-normal {
-  animation: rotate-icon-to-normal 0.5s linear forwards;
-  -webkit-animation: rotate-icon-to-normal 0.5s linear forwards;
+  animation: rotate-icon-to-normal 0.3s linear forwards;
+  -webkit-animation: rotate-icon-to-normal 0.3s linear forwards;
 }
 
 @keyframes rotate-icon-to-normal{
