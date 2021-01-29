@@ -1,7 +1,7 @@
 import { activateMobileMenu } from './mobile-menu';
 import { activateModals } from './modals';
 import { Project, Storage } from './classes';
-import {createProjectElement,addProjectToPage} from './elements-creation';
+import { createProjectElement, addProjectToPage } from './elements-creation';
 
 activateMobileMenu();
 activateModals();
@@ -24,9 +24,11 @@ projects.forEach((project) =>
   })
 );
 
-renderProjectsElements()
+renderProjectsElements();
 
 function renderProjectsElements() {
   const projects = Storage.getProjects();
-  projects.forEach (project => addProjectToPage(createProjectElement(project.projectName)))
+  projects.forEach((project) =>
+    addProjectToPage(createProjectElement(project.projectName, project.id))
+  );
 }

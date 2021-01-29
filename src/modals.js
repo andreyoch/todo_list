@@ -40,9 +40,7 @@ function activateModals() {
         let project = new Project(projectName);
         Storage.addProject(project);
         //Create project element,give to projectElement project object id and add projectElement to Page
-        const projectElement = createProjectElement(projectName);
-        let projectId = projectElement.querySelector('.project-id');
-        projectId.textContent = project.id;
+        const projectElement = createProjectElement(projectName,project.id);
         addProjectToPage(projectElement);
         addProjectModal.style = 'display: none';
       },

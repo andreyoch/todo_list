@@ -1,5 +1,5 @@
 import { Storage } from './classes';
-function createProjectElement(projectName) {
+function createProjectElement(projectName,objectProjectId) {
   const project = document.createElement('div');
   project.className = 'main-page_project project';
 
@@ -28,6 +28,7 @@ function createProjectElement(projectName) {
   removeBtn.addEventListener('click', showProjectDeleteConfirmation);
 
   const projectId = document.createElement('div');
+  projectId.textContent = objectProjectId;
   projectId.className = 'project-id';
 
   project.append(projectTitle, projectNumberOfTasks, projectActiveBtns,projectId);
@@ -42,7 +43,7 @@ function createProjectElement(projectName) {
     projectBtns.style = 'display: none';
     project.style = 'height: 98px';
   });
-
+ 
   return project;
 }
 
