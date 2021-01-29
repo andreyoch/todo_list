@@ -1,3 +1,4 @@
+import { Storage } from './classes';
 function createProjectElement(projectName) {
   const project = document.createElement('div');
   project.className = 'main-page_project project';
@@ -26,7 +27,10 @@ function createProjectElement(projectName) {
   editBtn.addEventListener('click', editProjectName);
   removeBtn.addEventListener('click', showProjectDeleteConfirmation);
 
-  project.append(projectTitle, projectNumberOfTasks, projectActiveBtns);
+  const projectId = document.createElement('div');
+  projectId.className = 'project-id';
+
+  project.append(projectTitle, projectNumberOfTasks, projectActiveBtns,projectId);
 
   const projectBtns = project.querySelector('.project_btns');
   project.addEventListener('mouseenter', () => {
@@ -68,6 +72,8 @@ function editProjectName(e) {
     () => {
       //Update project name(grab value from name field)
       projectName.textContent = nameField.value;
+      const projectId = project.querySelector('.project-id').textContent;
+      Storage.updateProjectName(projectId,nameField.value)
       editProjectModal.style = 'display:none';
     },
     { once: true }
@@ -97,6 +103,9 @@ function showProjectDeleteConfirmation(e) {
   yesBtn.addEventListener(
     'click',
     () => {
+      const projectId = project.querySelector('.project-id').textContent;
+      Storage.removeProject(projectId);
+      //Remove project from page
       project.remove();
       removeProjectModal.style = 'display: none';
     },

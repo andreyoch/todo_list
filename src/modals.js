@@ -1,3 +1,4 @@
+import { Project, Storage } from './classes';
 import { createProjectElement, addProjectToPage } from './elements-creation';
 function activateModals() {
   const removeProjectModal = document.querySelector('.remove-modal-window');
@@ -35,8 +36,14 @@ function activateModals() {
       () => {
         const projectName = addProjectNameFieldModal.value;
         addProjectNameFieldModal.value = '';
-
-        addProjectToPage(createProjectElement(projectName));
+        //Create new project object
+        let project = new Project(projectName);
+        Storage.addProject(project);
+        //Create project element,give to projectElement project object id and add projectElement to Page
+        const projectElement = createProjectElement(projectName);
+        let projectId = projectElement.querySelector('.project-id');
+        projectId.textContent = project.id;
+        addProjectToPage(projectElement);
         addProjectModal.style = 'display: none';
       },
       { once: true }

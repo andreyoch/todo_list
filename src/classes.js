@@ -11,7 +11,7 @@ class Storage {
     if (localStorage.getItem('projects') === null) {
       projects = [];
     } else {
-      projects.JSON.parse(localStorage.getItem('projects'));
+      projects = JSON.parse(localStorage.getItem('projects'));
     }
     return projects;
   }
@@ -28,7 +28,7 @@ class Storage {
 
     for (let i = 0; i < projects.length; i++) {
       if (projects[i]['id'] === projectId) {
-        projects[i]['id'] === newProjectName;
+        projects[i]['projectName'] = newProjectName;
         break;
       }
     }
@@ -38,7 +38,6 @@ class Storage {
   static removeProject(projectId) {
     projectId = Number.parseInt(projectId);
     const projects = Storage.getProjects();
-
     for (let i = 0; i < projects.length; i++) {
       if (projects[i]['id'] === projectId) {
         projects.splice(i, 1);
@@ -50,7 +49,7 @@ class Storage {
 }
 
 function generateId() {
-  const projects = Repository.getProjects();
+  const projects = Storage.getProjects();
   let set = new Set();
   for (let key in projects) {
     if (key === 'id') {
@@ -71,3 +70,5 @@ function generateId() {
     }
   }
 }
+
+export { Project, Storage };
