@@ -317,12 +317,26 @@ input[type='checkbox'] {
 .expanded-task {
   padding:30px 10px 10px 10px;
   justify-content: flex-start;
-  height: 720px;
+  animation: increaseHeight 0.3s linear forwards;
+  -webkit-animation: increaseHeight 0.3s linear forwards;
 }
-
-.task-expanded_content {
+@keyframes increaseHeight{
+  0% {
+    height: 101px;
+  } 100% {
+    height: 720px;
+  }
+}
+.task-expanded_content-normal {
+  display: none;
+  transition: opacity 0.3s ease-out;
+  opacity: 0;
   text-align: center;
   width: inherit;
+}
+.task-expanded_content-expanded {
+  opacity: 1;
+  display: block;
 }
 .task_upper-elements-expanded {
   padding-bottom: 10px;
