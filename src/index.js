@@ -1,8 +1,8 @@
 import { activateMobileMenu } from './mobile-menu';
-import { activateProjectBtns } from './modals';
+import { activateModals } from './modals';
 
 activateMobileMenu();
-activateProjectBtns();
+activateModals();
 
 const projects = document.querySelectorAll('.project');
 const projectBtns = document.querySelector('.project_btns');
