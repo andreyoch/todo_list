@@ -378,7 +378,7 @@ input[type='checkbox'] {
   font-size: 40px;
   text-align: center;
 }
-.task-expanded_description {
+.task-expanded_description,.task-description {
   width: inherit;
   height: 236px;
   border-radius: 35px;
@@ -389,6 +389,7 @@ input[type='checkbox'] {
   text-align: left;
   padding: 20px;
   outline: none;
+  resize: none;
 }
 .task-expanded_due-date {
   margin: 20px 0;
@@ -437,6 +438,12 @@ input[type='checkbox'] {
 .completed-task-task-priority {
   animation: taskPriorityComplete 0.3s linear forwards;
   -webkit-animation: taskPriorityComplete 0.3s linear forwards;
+}
+
+.task-description {
+  background-color: #fff;
+  border: none;
+  width: 80%;
 }
 
 @keyframes taskPriorityComplete {
