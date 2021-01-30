@@ -17,6 +17,9 @@ function activateModals() {
   const createProjectModalBtn = addProjectModal.querySelector(
     '.create-modal-window_btn'
   );
+  const addTaskModal = document.querySelector('.project-page_modal-window');
+  const addTaskBtn = document.querySelector('.project-page_add-task-btn');
+  const addTaskModalCloseBtn = document.querySelector('.add-task-modal-close');
 
   editModalCloseBtn.addEventListener(
     'click',
@@ -27,6 +30,10 @@ function activateModals() {
     'click',
     () => (removeProjectModal.style = 'display: none')
   );
+
+  addTaskModalCloseBtn.addEventListener('click', () => {
+    addTaskModal.style = 'display:none';
+  });
 
   addProjectBtn.addEventListener('click', () => {
     addProjectModal.style = 'display: block';
@@ -40,12 +47,16 @@ function activateModals() {
         let project = new Project(projectName);
         Storage.addProject(project);
         //Create project element,give to projectElement project object id and add projectElement to Page
-        const projectElement = createProjectElement(projectName,project.id);
+        const projectElement = createProjectElement(projectName, project.id);
         addProjectToPage(projectElement);
         addProjectModal.style = 'display: none';
       },
       { once: true }
     );
+  });
+
+  addTaskBtn.addEventListener('click', () => {
+    addTaskModal.style = 'display:block';
   });
 
   //If user click oustide window - close window
@@ -70,6 +81,12 @@ function activateModals() {
   window.addEventListener('click', (e) => {
     if (e.target.className === 'main-page_add-project-modal modal-window') {
       addProjectModal.style = 'display: none';
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target.className === 'project-page_modal-window modal-window') {
+      addTaskModal.style = 'display: none';
     }
   });
 }
