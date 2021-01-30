@@ -48,6 +48,16 @@ class Storage {
   }
 }
 
+class Task {
+  constructor(taskName,taskDescription,dueDate,taskPriority) {
+    this.taskName = taskName;
+    this.taskDescription = taskDescription;
+    this.dueDate = dueDate;
+    this.taskPriority = taskPriority;
+    this.taskId = generateId();
+  }
+}
+
 function generateId() {
   const projects = Storage.getProjects();
   let set = new Set();
