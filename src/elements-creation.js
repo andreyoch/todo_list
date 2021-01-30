@@ -163,10 +163,10 @@ function createTaskElement(taskName, taskObjectId) {
   const taskExpandedContent = document.createElement('div');
   taskExpandedContent.className = 'task-expanded_content-normal';
 
-  const taskDescriptionInput = document.createElement('input');
+  const taskDescriptionInput = document.createElement('textarea');
   taskDescriptionInput.className = 'task-expanded_description';
-  taskDescriptionInput.type = 'text';
-  // taskDescriptionInput.attributes('disabled');
+  taskDescriptionInput.setAttribute('disabled','disabled')
+  taskDescriptionInput.textContent = 'Hello,this is task description!'
 
   const taskDueDate = document.createElement('div');
   taskDueDate.className = 'task-expanded_due-date';
@@ -209,6 +209,13 @@ function createTaskElement(taskName, taskObjectId) {
       { once: true }
     );
   });
+
+  //Animation for completed task
+  checkboxInput.addEventListener('click',() => {
+    task.classList.toggle('completed-task');
+    taskPriorityBlock.classList.toggle('completed-task-task-priority');
+    taskPriorityLine.classList.toggle('completed-task-task-priority');
+  })
 
   return task;
 }
