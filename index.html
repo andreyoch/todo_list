@@ -125,9 +125,9 @@
         </div>
         <div class="project-page_modal-window modal-window">
           <div class="add-task-modal_content modal-content">
+            <span class="close add-task-modal-close">&times;</span>
             <div class="add-task-modal-window_title modal-title">Create new task</div>
             <div class="add-task-modal-window_task-name modal-title">Task name</div>
-            <span class="close add-task-modal-close">&times;</span>
             <input type="text" class="add-task-modal-window_name-field name-field-modal">
             <div class="add-task-modal-window_task-description-tittle modal-title">Task description</div>
             <textarea class="add-task-modal-window_task-description-input task-description"name="" id="" cols="40" rows="10"></textarea>
@@ -139,11 +139,16 @@
             <div class="add-task-modal_task-priority-element">
               <div class="add-task-modal-task-priority-title modal-title">Task priority</div>
               <div class="add-task-modal_task-priority-elements">
-                <span id="green"  class="priority-element"></span>
+                <!-- <span id="green"  class="priority-element"></span>
                 <span id ="blue"  class="priority-element"></span>
                 <span id ="yellow"class="priority-element"></span>
                 <span id="purple" class="priority-element"></span>
-                <span id="red"    class="priority-element"></span>
+                <span id="red"    class="priority-element"></span> -->
+                <span id="green"  class="el-background"><input type="radio" name="priority-element" value="green" id="green"></span>
+                <span id="blue"   class="el-background"><input type="radio" name="priority-element" value="blue" id="blue"></span>
+                <span id="yellow" class="el-background"><input type="radio" name="priority-element" value="yellow" id="yellow"></span>
+                <span id="purple" class="el-background"><input type="radio" name="priority-element" value="purple" id="purple"></span>
+                <span id="red"    class="el-background"><input type="radio" name="priority-element" value="red" id="red"></span>
               </div>
             </div>
             </div>

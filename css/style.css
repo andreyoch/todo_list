@@ -378,7 +378,8 @@ input[type='checkbox'] {
   font-size: 40px;
   text-align: center;
 }
-.task-expanded_description,.task-description {
+.task-expanded_description,
+.task-description {
   width: inherit;
   height: 236px;
   border-radius: 35px;
@@ -446,6 +447,73 @@ input[type='checkbox'] {
   width: 80%;
 }
 
+/*Styles for add task modal window*/
+.add-task-modal-window_title {
+  margin-bottom: 50px;
+}
+
+.add-task-modal-window_task-name,
+.add-task-modal-window_task-description-tittle,
+.add-task-modal-window_name-field,
+.add-task-modal-window_task-description-input {
+  margin-bottom: 30px;
+}
+.add-task-modal-window_name-field {
+  margin-top: 0px;
+}
+.add-task-modal_bottom-elements-row {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+}
+.add-task-modal_due-date-element{
+  text-align: center;
+}
+.add-task-modal_date-input {
+  text-align: center;
+  font-size: 20px;
+  font-family: var(--main-font);
+}
+input[name='priority-element'] {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 20px;
+}
+
+.el-background {
+  margin: 3px;
+  display: inline-block;
+  background-color: green;
+}
+/*Styles for task priority task element container*/
+#green{
+  background-color: #19de97;
+}
+#blue {
+  background-color: #254fe7;
+}
+#yellow {
+  background-color: #f0dc27;
+}
+
+#purple {
+  background-color: #6f3ebe;
+}
+
+#red {
+  background-color: #e72525;
+}
+
+.add-task-modal_due-date-title,.add-task-modal-task-priority-title {
+  margin-bottom: 10px;
+}
+
+.add-task-modal-window_title {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 @keyframes taskPriorityComplete {
   0% {
   }
@@ -488,6 +556,16 @@ input[type='checkbox'] {
     height: 10px;
     background-color: #19de97;
     border-radius: 5px;
+  }
+  .add-task-modal_bottom-elements-row {
+    flex-direction: column;
+  }
+  .modal-content {
+    width: 80%;
+  }
+
+  .add-task-modal_due-date-element {
+    margin-bottom: 25px;
   }
 }
 @media (max-width: 450px) {
