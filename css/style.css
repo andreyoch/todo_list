@@ -77,10 +77,10 @@
 
 /* Styles for main page*/
 .main-page {
-  /* display: none; */
+  display: none;
 }
 .project-page {
-  display: none;
+  /* display: none; */
 }
 .title {
   margin: 52px 0 82px 0;
@@ -285,7 +285,6 @@
 .task_priority-block {
   width: 20%;
   height: 67px;
-  background-color: #19de97;
   border-radius: 20px;
 }
 .expand-icon-expanded {
