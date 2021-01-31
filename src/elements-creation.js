@@ -133,7 +133,8 @@ function renderProjectPage(e) {
         task.name,
         task.description,
         task.dueDate,
-        task.priority
+        task.priority,
+        task.taskId
       )
     );
   });
@@ -142,7 +143,7 @@ function renderProjectPage(e) {
   projectPage.style = 'display: block';
 }
 
-function createTaskElement(name, description, dueDute, priorityColor) {
+function createTaskElement(name, description, dueDute, priorityColor,id) {
   let backgroundColor;
   switch (priorityColor) {
     case 'green':
@@ -230,7 +231,7 @@ function createTaskElement(name, description, dueDute, priorityColor) {
 
   const taskId = document.createElement('span');
   taskId.className = 'task_id';
-  // taskId.textContent = taskObjectId;
+  taskId.textContent = id;
 
   taskExpandedContent.append(taskDescriptionInput, taskDueDate, taskBtnsRow);
 
@@ -260,6 +261,9 @@ function createTaskElement(name, description, dueDute, priorityColor) {
     taskPriorityLine.classList.toggle('completed-task-task-priority');
   });
 
+  //Show remove modal if click on remove task btn
+  removeBtn.addEventListener('click',showTaskDeleteConfirmation)
+
   return task;
 }
 
@@ -283,6 +287,34 @@ function getNumberOfTasks(projectId) {
       }
     }
   }
+}
+
+function showTaskDeleteConfirmation(e) {
+  const removeTaskModal = document.querySelector('.project-page_remove-task-modal-window ');
+  const task = e.target.parentElement.parentElement.parentElement;
+  const taskId = task.querySelector('.task_id').textContent;
+  const taskName = task.querySelector('.task_title').textContent;
+  const noBtnModal = removeTaskModal.querySelector('.remove-task-modal_no-btn');
+  const yesBtnModal = removeTaskModal.querySelector('.remove-task-modal_yes-btn');
+  const removeTaskModalTitle = removeTaskModal.querySelector('.remove-task-modal-window_title');
+  const projectId = document.querySelector('.project-page').querySelector('.project-id').textContent
+  
+
+  removeTaskModal.style = 'display: block';
+  removeTaskModalTitle.innerHTML = `Are you sure to delete <br> "${taskName}" task?`
+
+  noBtnModal.addEventListener('click',() => {
+    removeTaskModal.style = 'display:none';
+  },{once:true})
+
+  yesBtnModal.addEventListener('click',()=>{
+    //Remove task element from page
+    task.remove();
+    //Remove task object from storage
+    Storage.removeTask(projectId,taskId)
+    removeTaskModal.style = 'display:none';
+    
+  },{once:true})
 }
 
 export {

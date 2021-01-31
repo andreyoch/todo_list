@@ -106,6 +106,21 @@ class Storage {
       }
     }
   }
+static removeTask(projectId,taskId) {
+  taskId = Number.parseInt(taskId)
+  const tasks = this.getTasks(projectId);
+  for(const task of tasks) {
+    for(const key in task) {
+      if(key ==='taskId' && task[key] === taskId) {
+        const taskIndex = tasks.indexOf(task);
+        console.log(tasks)
+        tasks.splice(taskIndex,1);
+        console.log(tasks)
+        this.updateTasksArray(projectId,tasks)
+      }
+    }
+  }
+}
 }
 
 class Task {
@@ -167,4 +182,6 @@ function generateTaskId(projectId) {
     }
   }
 }
+
+
 export { Project, Storage, Task };
