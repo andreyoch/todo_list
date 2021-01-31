@@ -49,6 +49,8 @@ function createProjectElement(projectName, objectProjectId) {
     project.style = 'height: 98px';
   });
 
+  projectTitle.addEventListener('click', renderProjectPage);
+
   return project;
 }
 
@@ -119,7 +121,22 @@ function showProjectDeleteConfirmation(e) {
   );
 }
 
-function createTaskElement(taskName, taskObjectId) {
+function renderProjectPage(e) {
+  const project = e.target.parentElement;
+  const projectId = project.querySelector('.project-id').textContent;
+  const tasks = Storage.getTasks();
+  // tasks.forEach((task) => {
+  //   addTaskElementToPage(
+  //     createTaskElement(task.name, task.description, task.dueDate)
+  //   );
+  // });
+  const mainPage = document.querySelector('.main-page');
+  const projectPage = document.querySelector('.project-page');
+  mainPage.style = 'display: none';
+  projectPage.style = 'display: block';
+}
+
+function createTaskElement(name, description, dueDute) {
   const task = document.createElement('div');
   task.className = 'task';
 
@@ -127,13 +144,12 @@ function createTaskElement(taskName, taskObjectId) {
   taskUpperElementsRow.className = 'task_upper-elements-row';
 
   const checkboxInput = document.createElement('input');
-  checkboxInput.type = 'checkbox'
+  checkboxInput.type = 'checkbox';
   checkboxInput.className = 'task_checkbox';
-  
 
   const taskTitle = document.createElement('div');
   taskTitle.className = 'task_title';
-  taskTitle.textContent = taskName;
+  taskTitle.textContent = name;
   const taskPriorityLine = document.createElement('div');
   taskPriorityLine.className = 'task-priority-line';
 
@@ -165,12 +181,12 @@ function createTaskElement(taskName, taskObjectId) {
 
   const taskDescriptionInput = document.createElement('textarea');
   taskDescriptionInput.className = 'task-expanded_description';
-  taskDescriptionInput.setAttribute('disabled','disabled')
-  taskDescriptionInput.textContent = 'Hello,this is task description!'
+  taskDescriptionInput.setAttribute('disabled', 'disabled');
+  taskDescriptionInput.textContent = description;
 
   const taskDueDate = document.createElement('div');
   taskDueDate.className = 'task-expanded_due-date';
-  taskDueDate.textContent = 'Due: 10/11/2025';
+  taskDueDate.textContent = dueDute;
 
   const taskBtnsRow = document.createElement('div');
   taskBtnsRow.className = 'task-expanded_btns-row';
@@ -187,7 +203,7 @@ function createTaskElement(taskName, taskObjectId) {
 
   const taskId = document.createElement('span');
   taskId.className = 'task_id';
-  taskId.textContent = taskObjectId;
+  // taskId.textContent = taskObjectId;
 
   taskExpandedContent.append(taskDescriptionInput, taskDueDate, taskBtnsRow);
 
@@ -211,11 +227,11 @@ function createTaskElement(taskName, taskObjectId) {
   });
 
   //Animation for completed task
-  checkboxInput.addEventListener('click',() => {
+  checkboxInput.addEventListener('click', () => {
     task.classList.toggle('completed-task');
     taskPriorityBlock.classList.toggle('completed-task-task-priority');
     taskPriorityLine.classList.toggle('completed-task-task-priority');
-  })
+  });
 
   return task;
 }
@@ -223,7 +239,13 @@ function createTaskElement(taskName, taskObjectId) {
 function addTaskElementToPage(task) {
   const projectPageRow = document.querySelector('.project-page_row');
 
-  projectPageRow.append(task)
+  projectPageRow.append(task);
 }
 
-export { createProjectElement, updateNumberOfTasks, addProjectToPage,createTaskElement, addTaskElementToPage };
+export {
+  createProjectElement,
+  updateNumberOfTasks,
+  addProjectToPage,
+  createTaskElement,
+  addTaskElementToPage,
+};

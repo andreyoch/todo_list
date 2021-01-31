@@ -2,6 +2,7 @@ class Project {
   constructor(projectName) {
     this.projectName = projectName;
     this.id = generateId();
+    this.tasks = [];
   }
 }
 
@@ -46,10 +47,24 @@ class Storage {
     }
     localStorage.setItem('projects', JSON.stringify(projects));
   }
+
+  static getTasks(projectId) {
+    projectId = Number.parseInt(projectId);
+    const projects = this.getProjects();
+    let tasks;
+    for (const project of projects) {
+      for (const key in project) {
+        if (key === 'id') {
+          tasks = project['tasks'];
+        }
+      }
+    }
+    return tasks;
+  }
 }
 
 class Task {
-  constructor(taskName,taskDescription,dueDate,taskPriority) {
+  constructor(taskName, taskDescription, dueDate, taskPriority) {
     this.taskName = taskName;
     this.taskDescription = taskDescription;
     this.dueDate = dueDate;
