@@ -7,8 +7,6 @@ class Project {
 }
 
 class Storage {
-
-
   static getProjects() {
     let projects;
     if (localStorage.getItem('projects') === null) {
@@ -26,9 +24,8 @@ class Storage {
   }
 
   static updateArrayOfProjects(arrayOfProjects) {
-    localStorage.setItem('projects',JSON.stringify(arrayOfProjects))
+    localStorage.setItem('projects', JSON.stringify(arrayOfProjects));
   }
- 
 
   static updateProjectName(projectId, newProjectName) {
     projectId = Number.parseInt(projectId);
@@ -43,17 +40,17 @@ class Storage {
     localStorage.setItem('projects', JSON.stringify(projects));
   }
 
-  static updateProjectInfo(projectId,newProject) {
-    projectId = Number.parseInt(projectId)
+  static updateProjectInfo(projectId, newProject) {
+    projectId = Number.parseInt(projectId);
     const projects = this.getProjects();
-    for(let project of projects) {
-      for(const key in project) {
-        if(key === 'id') {
-          if(projectId === project['id']) {
+    for (let project of projects) {
+      for (const key in project) {
+        if (key === 'id') {
+          if (projectId === project['id']) {
             const projectObjectIndex = projects.indexOf(project);
-            projects.splice(projectObjectIndex,1);
-            projects.push(newProject)
-            this.updateArrayOfProjects(projects)
+            projects.splice(projectObjectIndex, 1);
+            projects.push(newProject);
+            this.updateArrayOfProjects(projects);
           } else {
             continue;
           }
@@ -100,7 +97,7 @@ class Storage {
         if (key === 'id') {
           if (projectId === project['id']) {
             project['tasks'] = newTasks;
-            this.updateProjectInfo(projectId,project)
+            this.updateProjectInfo(projectId, project);
           }
         }
       }
@@ -109,11 +106,11 @@ class Storage {
 }
 
 class Task {
-  constructor(taskName, taskDescription, dueDate, taskPriority) {
-    this.taskName = taskName;
-    this.taskDescription = taskDescription;
+  constructor(name, description, dueDate, priority) {
+    this.name = name;
+    this.description = description;
     this.dueDate = dueDate;
-    this.taskPriority = taskPriority;
+    this.priority = priority;
     this.taskId = generateId();
   }
 }

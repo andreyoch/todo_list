@@ -131,12 +131,17 @@ function renderProjectPage(e) {
   //Give project page actual project id
   projectIdProjectPageEl.textContent = projectId;
   //Remove Old taskElements
-  if(oldTasks.length > 1) {
+  if (oldTasks.length > 1) {
     oldTasks.forEach((taskElement) => taskElement.remove());
   }
   tasks.forEach((task) => {
     addTaskElementToPage(
-      createTaskElement(task.name, task.description, task.dueDate)
+      createTaskElement(
+        task.name,
+        task.description,
+        task.dueDate,
+        task.priority
+      )
     );
   });
   const mainPage = document.querySelector('.main-page');
