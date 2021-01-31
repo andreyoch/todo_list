@@ -136,7 +136,29 @@ function renderProjectPage(e) {
   projectPage.style = 'display: block';
 }
 
-function createTaskElement(name, description, dueDute) {
+function createTaskElement(name, description, dueDute,priorityColor) {
+  let backgroundColor
+  switch(priorityColor) {
+    case 'green':
+    backgroundColor = '#19de97'
+    break;
+    case 'blue':
+      backgroundColor = '#254fe7'
+      break;
+    case 'yellow':
+      backgroundColor = '#f0dc27';
+      break;
+    case 'purple':
+      backgroundColor = '#6f3ebe';
+      break;
+    case 'red':
+      backgroundColor = '#e72525';
+      break;
+  }
+
+  console.log(backgroundColor,priorityColor)
+
+
   const task = document.createElement('div');
   task.className = 'task';
 
@@ -152,11 +174,13 @@ function createTaskElement(name, description, dueDute) {
   taskTitle.textContent = name;
   const taskPriorityLine = document.createElement('div');
   taskPriorityLine.className = 'task-priority-line';
+  taskPriorityLine.style = `background-color: ${backgroundColor};`
 
   taskTitle.append(taskPriorityLine);
 
   const taskPriorityBlock = document.createElement('div');
   taskPriorityBlock.className = 'task_priority-block';
+  taskPriorityBlock.style = `background-color: ${backgroundColor};`
 
   const imgIconContainer = document.createElement('div');
   imgIconContainer.className = 'img-container';

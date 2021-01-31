@@ -1,5 +1,10 @@
 import { Project, Storage } from './classes';
-import { createProjectElement, addProjectToPage } from './elements-creation';
+import {
+  createProjectElement,
+  addProjectToPage,
+  createTaskElement,
+  addTaskElementToPage,
+} from './elements-creation';
 function activateModals() {
   const removeProjectModal = document.querySelector('.remove-modal-window');
   const editProjectModal = document.querySelector('.edit-modal-window');
@@ -20,6 +25,9 @@ function activateModals() {
   const addTaskModal = document.querySelector('.project-page_modal-window');
   const addTaskBtn = document.querySelector('.project-page_add-task-btn');
   const addTaskModalCloseBtn = document.querySelector('.add-task-modal-close');
+  const createTaskModalBtn = document.querySelector(
+    '.create-task-modal-window_btn'
+  );
 
   editModalCloseBtn.addEventListener(
     'click',
@@ -56,7 +64,46 @@ function activateModals() {
   });
 
   addTaskBtn.addEventListener('click', () => {
-    addTaskModal.style = 'display:block';
+    addTaskModal.style = 'display: block';
+
+    createTaskModalBtn.addEventListener(
+      'click',
+      (e) => {
+        //Collect  data from form
+        const modalContent = e.target.parentElement.parentElement;
+        const nameInput = modalContent.querySelector(
+          '.add-task-modal-window_name-field'
+        );
+        const descriptionInput = modalContent.querySelector(
+          '.add-task-modal-window_task-description-input'
+        );
+        const dueDateInput = modalContent.querySelector(
+          '.add-task-modal_date-input'
+        );
+        const taskPriorityBtns = modalContent.querySelectorAll(
+          'input[name="priority-element"]'
+        );
+        let priorityColor;
+        taskPriorityBtns.forEach((el) => {
+          if (el.checked) {
+            priorityColor = el.value;
+          }
+        });
+        const taskName = nameInput.value;
+        const taskDescription = descriptionInput.value;
+        const dueDate = dueDateInput.value;
+
+        //Clean inputs
+        nameInput.value = '';
+        descriptionInput.value = '';
+        dueDateInput.value = '';
+        taskPriorityBtns.forEach((el) => (el.checked = false));
+
+        addTaskModal.style = 'display: none';
+        addTaskElementToPage(createTaskElement(taskName,taskDescription,dueDate,priorityColor));
+      },
+      { once: true }
+    );
   });
 
   //If user click oustide window - close window
