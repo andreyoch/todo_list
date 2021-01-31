@@ -1,4 +1,4 @@
-import { Project, Storage } from './classes';
+import { Project, Storage, Task } from './classes';
 import {
   createProjectElement,
   addProjectToPage,
@@ -69,6 +69,9 @@ function activateModals() {
     createTaskModalBtn.addEventListener(
       'click',
       (e) => {
+        //Grab project page id
+        const projectPage = e.target.parentElement.parentElement.parentElement.parentElement;
+        const projectId = projectPage.querySelector('.project-id').textContent;
         //Collect  data from form
         const modalContent = e.target.parentElement.parentElement;
         const nameInput = modalContent.querySelector(
@@ -92,15 +95,20 @@ function activateModals() {
         const taskName = nameInput.value;
         const taskDescription = descriptionInput.value;
         const dueDate = dueDateInput.value;
-
+        const task = new Task(taskName,taskDescription,dueDate,priorityColor);
+        const tasksArray = Storage.getTasks(projectId);
+        tasksArray.push(task)
+        Storage.updateTasksArray(projectId,tasksArray)
+        
         //Clean inputs
         nameInput.value = '';
         descriptionInput.value = '';
         dueDateInput.value = '';
         taskPriorityBtns.forEach((el) => (el.checked = false));
-
+        
         addTaskModal.style = 'display: none';
         addTaskElementToPage(createTaskElement(taskName,taskDescription,dueDate,priorityColor));
+
       },
       { once: true }
     );

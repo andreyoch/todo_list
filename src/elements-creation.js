@@ -124,26 +124,34 @@ function showProjectDeleteConfirmation(e) {
 function renderProjectPage(e) {
   const project = e.target.parentElement;
   const projectId = project.querySelector('.project-id').textContent;
-  const tasks = Storage.getTasks();
-  // tasks.forEach((task) => {
-  //   addTaskElementToPage(
-  //     createTaskElement(task.name, task.description, task.dueDate)
-  //   );
-  // });
-  const mainPage = document.querySelector('.main-page');
+  const tasks = Storage.getTasks(projectId);
   const projectPage = document.querySelector('.project-page');
+  const projectIdProjectPageEl = projectPage.querySelector('.project-id');
+  const oldTasks = projectPage.querySelectorAll('.task');
+  //Give project page actual project id
+  projectIdProjectPageEl.textContent = projectId;
+  //Remove Old taskElements
+  if(oldTasks.length > 1) {
+    oldTasks.forEach((taskElement) => taskElement.remove());
+  }
+  tasks.forEach((task) => {
+    addTaskElementToPage(
+      createTaskElement(task.name, task.description, task.dueDate)
+    );
+  });
+  const mainPage = document.querySelector('.main-page');
   mainPage.style = 'display: none';
   projectPage.style = 'display: block';
 }
 
-function createTaskElement(name, description, dueDute,priorityColor) {
-  let backgroundColor
-  switch(priorityColor) {
+function createTaskElement(name, description, dueDute, priorityColor) {
+  let backgroundColor;
+  switch (priorityColor) {
     case 'green':
-    backgroundColor = '#19de97'
-    break;
+      backgroundColor = '#19de97';
+      break;
     case 'blue':
-      backgroundColor = '#254fe7'
+      backgroundColor = '#254fe7';
       break;
     case 'yellow':
       backgroundColor = '#f0dc27';
@@ -155,9 +163,6 @@ function createTaskElement(name, description, dueDute,priorityColor) {
       backgroundColor = '#e72525';
       break;
   }
-
-  console.log(backgroundColor,priorityColor)
-
 
   const task = document.createElement('div');
   task.className = 'task';
@@ -174,13 +179,13 @@ function createTaskElement(name, description, dueDute,priorityColor) {
   taskTitle.textContent = name;
   const taskPriorityLine = document.createElement('div');
   taskPriorityLine.className = 'task-priority-line';
-  taskPriorityLine.style = `background-color: ${backgroundColor};`
+  taskPriorityLine.style = `background-color: ${backgroundColor};`;
 
   taskTitle.append(taskPriorityLine);
 
   const taskPriorityBlock = document.createElement('div');
   taskPriorityBlock.className = 'task_priority-block';
-  taskPriorityBlock.style = `background-color: ${backgroundColor};`
+  taskPriorityBlock.style = `background-color: ${backgroundColor};`;
 
   const imgIconContainer = document.createElement('div');
   imgIconContainer.className = 'img-container';

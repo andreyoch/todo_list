@@ -7,6 +7,8 @@ class Project {
 }
 
 class Storage {
+
+
   static getProjects() {
     let projects;
     if (localStorage.getItem('projects') === null) {
@@ -23,6 +25,11 @@ class Storage {
     localStorage.setItem('projects', JSON.stringify(projects));
   }
 
+  static updateArrayOfProjects(arrayOfProjects) {
+    localStorage.setItem('projects',JSON.stringify(arrayOfProjects))
+  }
+ 
+
   static updateProjectName(projectId, newProjectName) {
     projectId = Number.parseInt(projectId);
     const projects = Storage.getProjects();
@@ -34,6 +41,25 @@ class Storage {
       }
     }
     localStorage.setItem('projects', JSON.stringify(projects));
+  }
+
+  static updateProjectInfo(projectId,newProject) {
+    projectId = Number.parseInt(projectId)
+    const projects = this.getProjects();
+    for(let project of projects) {
+      for(const key in project) {
+        if(key === 'id') {
+          if(projectId === project['id']) {
+            const projectObjectIndex = projects.indexOf(project);
+            projects.splice(projectObjectIndex,1);
+            projects.push(newProject)
+            this.updateArrayOfProjects(projects)
+          } else {
+            continue;
+          }
+        }
+      }
+    }
   }
 
   static removeProject(projectId) {
@@ -55,11 +81,30 @@ class Storage {
     for (const project of projects) {
       for (const key in project) {
         if (key === 'id') {
-          tasks = project['tasks'];
+          if (projectId === project['id']) {
+            tasks = project['tasks'];
+          } else {
+            continue;
+          }
         }
       }
     }
     return tasks;
+  }
+
+  static updateTasksArray(projectId, newTasks) {
+    projectId = Number.parseInt(projectId);
+    const projects = Storage.getProjects();
+    for (let project of projects) {
+      for (const key in project) {
+        if (key === 'id') {
+          if (projectId === project['id']) {
+            project['tasks'] = newTasks;
+            this.updateProjectInfo(projectId,project)
+          }
+        }
+      }
+    }
   }
 }
 
@@ -96,4 +141,4 @@ function generateId() {
   }
 }
 
-export { Project, Storage };
+export { Project, Storage, Task };

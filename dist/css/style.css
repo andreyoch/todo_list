@@ -77,10 +77,10 @@
 
 /* Styles for main page*/
 .main-page {
-  display: none;
+  /* display: none; */
 }
 .project-page {
-  /* display: none; */
+  display: none;
 }
 .title {
   margin: 52px 0 82px 0;
