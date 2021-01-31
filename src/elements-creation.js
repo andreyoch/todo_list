@@ -9,7 +9,7 @@ function createProjectElement(projectName, objectProjectId) {
 
   const projectNumberOfTasks = document.createElement('div');
   projectNumberOfTasks.className = 'project_number-of-tasks';
-  projectNumberOfTasks.textContent = 'Tasks: 0';
+  projectNumberOfTasks.textContent = `Tasks : ${getNumberOfTasks(objectProjectId)}`;
 
   const projectActiveBtns = document.createElement('div');
   projectActiveBtns.className = 'project_btns';
@@ -52,13 +52,6 @@ function createProjectElement(projectName, objectProjectId) {
   projectTitle.addEventListener('click', renderProjectPage);
 
   return project;
-}
-
-function updateNumberOfTasks(projectElement, numberOfTasks) {
-  const numberOfTasksElement = projectElement.querySelector(
-    'project_number-of-tasks'
-  );
-  numberOfTasks.textContent = `Tasks: ${numberOfTasks}`;
 }
 
 function addProjectToPage(projectElement) {
@@ -276,9 +269,24 @@ function addTaskElementToPage(task) {
   projectPageRow.append(task);
 }
 
+function getNumberOfTasks(projectId) {
+  let numberOfTasks;
+  projectId = Number.parseInt(projectId);
+  const projects = Storage.getProjects();
+  for (const project of projects) {
+    for (const key in project) {
+      if (key === 'id') {
+        if (projectId === project['id']) {
+          numberOfTasks = project['numberOfTasks'];
+          return numberOfTasks;
+        }
+      }
+    }
+  }
+}
+
 export {
   createProjectElement,
-  updateNumberOfTasks,
   addProjectToPage,
   createTaskElement,
   addTaskElementToPage,

@@ -3,6 +3,7 @@ class Project {
     this.projectName = projectName;
     this.id = generateId();
     this.tasks = [];
+    this.numberOfTasks = 0;
   }
 }
 
@@ -97,6 +98,8 @@ class Storage {
         if (key === 'id') {
           if (projectId === project['id']) {
             project['tasks'] = newTasks;
+            //Update number of tasks in project
+            project['numberOfTasks'] += 1;
             this.updateProjectInfo(projectId, project);
           }
         }
