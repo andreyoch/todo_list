@@ -1,7 +1,7 @@
 class Project {
   constructor(projectName) {
     this.projectName = projectName;
-    this.id = generateId();
+    this.id = generateProjectId();
     this.tasks = [];
     this.numberOfTasks = 0;
   }
@@ -109,16 +109,17 @@ class Storage {
 }
 
 class Task {
-  constructor(name, description, dueDate, priority) {
+  constructor(name, description, dueDate, priority,projectId) {
     this.name = name;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.taskId = generateId();
+    this.taskId = generateTaskId(Number.parseInt(projectId));
+    
   }
 }
 
-function generateId() {
+function generateProjectId() {
   const projects = Storage.getProjects();
   let set = new Set();
   for (let key in projects) {
@@ -141,4 +142,29 @@ function generateId() {
   }
 }
 
+//Generate unique id for task in project  
+function generateTaskId(projectId) {
+  const tasks = Storage.getTasks(projectId);
+  let set = new Set();
+  for (const task of tasks) {
+    for(const key in task) {
+    if (key === 'taskId') {
+      set.add(task['taskId']);
+    }
+  }
+  }
+  const setOldSize = set.size;
+  let setNewSize;
+  let condition = true;
+  while (condition) {
+    let id = Math.floor(Math.random() * 10000 + 1);
+    setNewSize = set.add(id).size;
+    if (setOldSize === setNewSize) {
+      continue;
+    } else {
+      condition = false;
+      return id;
+    }
+  }
+}
 export { Project, Storage, Task };

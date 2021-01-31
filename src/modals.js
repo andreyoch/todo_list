@@ -95,7 +95,7 @@ function activateModals() {
         const taskName = nameInput.value;
         const taskDescription = descriptionInput.value;
         const dueDate = dueDateInput.value;
-        const task = new Task(taskName,taskDescription,dueDate,priorityColor);
+        const task = new Task(taskName,taskDescription,dueDate,priorityColor,projectId);
         const tasksArray = Storage.getTasks(projectId);
         tasksArray.push(task)
         Storage.updateTasksArray(projectId,tasksArray)
