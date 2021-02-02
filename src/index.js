@@ -63,6 +63,6 @@ expandIcon.addEventListener('click', (e) => {
 });
 
 const task1 = createTaskElement('MyTask',19);
-console.log(task1)
+
 
 addTaskElementToPage(task1);

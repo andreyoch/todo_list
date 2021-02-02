@@ -140,11 +140,6 @@
             <div class="add-task-modal_task-priority-element">
               <div class="add-task-modal-task-priority-title modal-title">Task priority</div>
               <div class="add-task-modal_task-priority-elements">
-                <!-- <span id="green"  class="priority-element"></span>
-                <span id ="blue"  class="priority-element"></span>
-                <span id ="yellow"class="priority-element"></span>
-                <span id="purple" class="priority-element"></span>
-                <span id="red"    class="priority-element"></span> -->
                 <span id="green"  class="el-background"><input type="radio" name="priority-element" value="green" id="green"></span>
                 <span id="blue"   class="el-background"><input type="radio" name="priority-element" value="blue" id="blue"></span>
                 <span id="yellow" class="el-background"><input type="radio" name="priority-element" value="yellow" id="yellow"></span>
@@ -155,6 +150,34 @@
             </div>
 
             <div class="btn-container"><button class="create-task-modal-window_btn main-btn">create</button></div>
+          </div>
+        </div>
+        <div class="project-page_edit-modal-window modal-window">
+          <div class="edit-task-modal_content modal-content">
+            <span class="close edit-task-modal-close">&times;</span>
+            <div class="edit-task-modal-window_title modal-title">Edit task</div>
+            <div class="edit-task-modal-window_task-name modal-title">Task name</div>
+            <input type="text" class="edit-task-modal-window_name-field name-field-modal">
+            <div class="edit-task-modal-window_task-description-tittle modal-title">Task description</div>
+            <textarea class="edit-task-modal-window_task-description-input task-description"name="" id="" cols="40" rows="10"></textarea>
+            <div class="edit-task-modal_bottom-elements-row">
+              <div class="edit-task-modal_due-date-element">
+            <div class="edit-task-modal_due-date-title modal-title">Due date</div>
+            <input type="date" class="edit-task-modal_date-input" value='2021-02-02'>
+          </div>
+            <div class="edit-task-modal_task-priority-element">
+              <div class="edit-task-modal-task-priority-title modal-title">Task priority</div>
+              <div class="edit-task-modal_task-priority-elements">
+                <span id="green"  class="el-background"><input class ="edit" type="radio" name="priority-element" value="green" id="green"></span>
+                <span id="blue"   class="el-background"><input class ="edit" type="radio" name="priority-element" value="blue" id="blue"></span>
+                <span id="yellow" class="el-background"><input class ="edit" type="radio" name="priority-element" value="yellow" id="yellow"></span>
+                <span id="purple" class="el-background"><input class ="edit" type="radio" name="priority-element" value="purple" id="purple" checked></span>
+                <span id="red"    class="el-background"><input class ="edit" type="radio" name="priority-element" value="red" id="red"></span>
+              </div>
+            </div>
+            </div>
+
+            <div class="btn-container"><button class="edit-task-modal-window_btn main-btn">Save</button></div>
           </div>
         </div>
         <div class="project-page_remove-task-modal-window remove-modal-window modal-window">

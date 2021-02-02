@@ -90,7 +90,7 @@ class Storage {
     return tasks;
   }
 
-  static updateTasksArray(projectId, newTasks) {
+  static updateTasksArray(projectId, newTasks, action) {
     projectId = Number.parseInt(projectId);
     const projects = Storage.getProjects();
     for (let project of projects) {
@@ -99,38 +99,60 @@ class Storage {
           if (projectId === project['id']) {
             project['tasks'] = newTasks;
             //Update number of tasks in project
-            project['numberOfTasks'] += 1;
+            if (action === 'add') {
+              project['numberOfTasks'] += 1;
+            } else if (action === 'remove') {
+              project['numberOfTasks'] -= 1;
+            } else if(action === 'edit') {
+
+            }
+
             this.updateProjectInfo(projectId, project);
           }
         }
       }
     }
   }
-static removeTask(projectId,taskId) {
-  taskId = Number.parseInt(taskId)
-  const tasks = this.getTasks(projectId);
-  for(const task of tasks) {
-    for(const key in task) {
-      if(key ==='taskId' && task[key] === taskId) {
-        const taskIndex = tasks.indexOf(task);
-        console.log(tasks)
-        tasks.splice(taskIndex,1);
-        console.log(tasks)
-        this.updateTasksArray(projectId,tasks)
+  static removeTask(projectId, taskId) {
+    taskId = Number.parseInt(taskId);
+    const tasks = this.getTasks(projectId);
+    for (const task of tasks) {
+      for (const key in task) {
+        if (key === 'taskId' && task[key] === taskId) {
+          const taskIndex = tasks.indexOf(task);
+          tasks.splice(taskIndex, 1);
+          this.updateTasksArray(projectId, tasks, 'remove');
+        }
+      }
+    }
+  }
+
+  static updateTaskInfo(projectId,taskId,newTaskName,newTaskDescription,newTaskDueDate,newTaskPriority) {
+    taskId = Number.parseInt(taskId);
+    const tasks = this.getTasks(projectId);
+    
+    for (const task of tasks) {
+      for (const key in task) {
+        if (key === 'taskId' && task[key] === taskId) {
+          task['name'] = newTaskName;
+          task['description'] = newTaskDescription;
+          task['dueDate'] = newTaskDueDate;
+          task['priority'] = newTaskPriority;
+
+          this.updateTasksArray(projectId, tasks, 'edit');
+        }
       }
     }
   }
 }
-}
 
 class Task {
-  constructor(name, description, dueDate, priority,projectId) {
+  constructor(name, description, dueDate, priority, projectId) {
     this.name = name;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.taskId = generateTaskId(Number.parseInt(projectId));
-    
   }
 }
 
@@ -157,16 +179,16 @@ function generateProjectId() {
   }
 }
 
-//Generate unique id for task in project  
+//Generate unique id for task in project
 function generateTaskId(projectId) {
   const tasks = Storage.getTasks(projectId);
   let set = new Set();
   for (const task of tasks) {
-    for(const key in task) {
-    if (key === 'taskId') {
-      set.add(task['taskId']);
+    for (const key in task) {
+      if (key === 'taskId') {
+        set.add(task['taskId']);
+      }
     }
-  }
   }
   const setOldSize = set.size;
   let setNewSize;
@@ -182,6 +204,5 @@ function generateTaskId(projectId) {
     }
   }
 }
-
 
 export { Project, Storage, Task };

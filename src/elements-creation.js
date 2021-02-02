@@ -9,7 +9,9 @@ function createProjectElement(projectName, objectProjectId) {
 
   const projectNumberOfTasks = document.createElement('div');
   projectNumberOfTasks.className = 'project_number-of-tasks';
-  projectNumberOfTasks.textContent = `Tasks : ${getNumberOfTasks(objectProjectId)}`;
+  projectNumberOfTasks.textContent = `Tasks : ${getNumberOfTasks(
+    objectProjectId
+  )}`;
 
   const projectActiveBtns = document.createElement('div');
   projectActiveBtns.className = 'project_btns';
@@ -143,7 +145,7 @@ function renderProjectPage(e) {
   projectPage.style = 'display: block';
 }
 
-function createTaskElement(name, description, dueDute, priorityColor,id) {
+function createTaskElement(name, description, dueDute, priorityColor, id) {
   let backgroundColor;
   switch (priorityColor) {
     case 'green':
@@ -262,7 +264,10 @@ function createTaskElement(name, description, dueDute, priorityColor,id) {
   });
 
   //Show remove modal if click on remove task btn
-  removeBtn.addEventListener('click',showTaskDeleteConfirmation)
+  removeBtn.addEventListener('click', showTaskDeleteConfirmation);
+
+  //Show edit modal if click on edit task btn
+  editBtn.addEventListener('click', showEditTaskModal);
 
   return task;
 }
@@ -290,31 +295,119 @@ function getNumberOfTasks(projectId) {
 }
 
 function showTaskDeleteConfirmation(e) {
-  const removeTaskModal = document.querySelector('.project-page_remove-task-modal-window ');
+  const removeTaskModal = document.querySelector(
+    '.project-page_remove-task-modal-window '
+  );
   const task = e.target.parentElement.parentElement.parentElement;
   const taskId = task.querySelector('.task_id').textContent;
   const taskName = task.querySelector('.task_title').textContent;
   const noBtnModal = removeTaskModal.querySelector('.remove-task-modal_no-btn');
-  const yesBtnModal = removeTaskModal.querySelector('.remove-task-modal_yes-btn');
-  const removeTaskModalTitle = removeTaskModal.querySelector('.remove-task-modal-window_title');
-  const projectId = document.querySelector('.project-page').querySelector('.project-id').textContent
-  
+  const yesBtnModal = removeTaskModal.querySelector(
+    '.remove-task-modal_yes-btn'
+  );
+  const removeTaskModalTitle = removeTaskModal.querySelector(
+    '.remove-task-modal-window_title'
+  );
+  const projectId = document
+    .querySelector('.project-page')
+    .querySelector('.project-id').textContent;
 
   removeTaskModal.style = 'display: block';
-  removeTaskModalTitle.innerHTML = `Are you sure to delete <br> "${taskName}" task?`
+  removeTaskModalTitle.innerHTML = `Are you sure to delete <br> "${taskName}" task?`;
 
-  noBtnModal.addEventListener('click',() => {
-    removeTaskModal.style = 'display:none';
-  },{once:true})
+  noBtnModal.addEventListener(
+    'click',
+    () => {
+      removeTaskModal.style = 'display:none';
+    },
+    { once: true }
+  );
 
-  yesBtnModal.addEventListener('click',()=>{
-    //Remove task element from page
-    task.remove();
-    //Remove task object from storage
-    Storage.removeTask(projectId,taskId)
-    removeTaskModal.style = 'display:none';
-    
-  },{once:true})
+  yesBtnModal.addEventListener(
+    'click',
+    () => {
+      //Remove task element from page
+      task.remove();
+      //Remove task object from storage
+      Storage.removeTask(projectId, taskId);
+      removeTaskModal.style = 'display:none';
+    },
+    { once: true }
+  );
+}
+
+function showEditTaskModal(e) { 
+  
+  const editTaskModal = document.querySelector(
+    '.project-page_edit-modal-window'
+  );
+  const task = e.target.parentElement.parentElement.parentElement;
+  const projectPage = task.parentElement.parentElement;
+  const projectId = projectPage.querySelector('.project-id').textContent;
+  const taskId = task.querySelector('.task_id').textContent;
+  const taskTitle = task.querySelector('.task_title');
+  const taskDescription = task.querySelector('.task-expanded_description');
+  const TaskDueDate = task.querySelector('.task-expanded_due-date');
+
+  //Update data in editModal form
+  const editTaskModalTitle = editTaskModal.querySelector(
+    '.edit-task-modal-window_name-field'
+  );
+  editTaskModalTitle.value = taskTitle.textContent;
+
+  const editTaskModalDesc = editTaskModal.querySelector(
+    '.edit-task-modal-window_task-description-input'
+  );
+  editTaskModalDesc.value = taskDescription.value;
+
+  const editTaskModalDateField = editTaskModal.querySelector(
+    '.edit-task-modal_date-input'
+  );
+  const taskPriorityBtns = editTaskModal.querySelectorAll('.edit');
+  const saveModalBtn = editTaskModal.querySelector(
+    '.edit-task-modal-window_btn'
+  );
+  editTaskModal.style = 'display: block';
+
+  
+
+  saveModalBtn.addEventListener(
+    'click',
+    () => {
+      
+      let priorityColor;
+      taskPriorityBtns.forEach((el) => {
+        if (el.checked) {
+          priorityColor = el.value;
+        }
+      });
+
+      const newTaskTitle = editTaskModalTitle.value;
+      const newTaskDescription = editTaskModalDesc.value;
+      const newDueDate = editTaskModalDateField.value;
+
+      //Update info in task html element
+      taskTitle.textContent = newTaskTitle
+      taskDescription.textContent = newTaskDescription;
+      TaskDueDate.textContent = newDueDate;
+
+
+      
+
+      //Update info in storage
+      Storage.updateTaskInfo(
+        projectId,
+        taskId,
+        newTaskTitle,
+        newTaskDescription,
+        newDueDate,
+        priorityColor
+      );
+
+      editTaskModal.style = 'display: none';
+    },
+    { once: true }
+  );
 }
 
 export {

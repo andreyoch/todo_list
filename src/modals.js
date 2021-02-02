@@ -105,7 +105,7 @@ function activateModals() {
         );
         const tasksArray = Storage.getTasks(projectId);
         tasksArray.push(task);
-        Storage.updateTasksArray(projectId, tasksArray);
+        Storage.updateTasksArray(projectId, tasksArray,'add');
 
         //Clean inputs
         nameInput.value = '';
