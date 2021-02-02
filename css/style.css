@@ -81,6 +81,17 @@
 }
 .project-page {
   display: none;
+  text-align: center;
+}
+
+.project-page_title {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.task_title {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 70%;
 }
 .title {
   margin: 52px 0 82px 0;
@@ -110,7 +121,10 @@
   background-color: #ffffff;
   outline: none;
 }
-
+.main-page_project {
+  overflow-x:auto;
+  overflow-y: hidden;
+}
 .expand-project {
   animation: project-expand 0.3s linear forwards;
   -webkit-animation: project-expand 0.3s linear forwards;
@@ -119,6 +133,7 @@
   animation: project-to-normal 0.3s linear forwards;
   -webkit-animation: project-to-normal 0.3s linear forwards;
 }
+
 
 @keyframes project-expand {
   0% {
@@ -264,6 +279,8 @@
   font-family: var(--main-font);
   font-size: 30px;
   text-align: center;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 .remove-project-modal_no-btn,
 .remove-project-modal_yes-btn,
@@ -314,6 +331,7 @@
   width: 20%;
   height: 67px;
   border-radius: 20px;
+  margin-right: 20px;
 }
 .expand-icon-expanded {
   animation: expand-icon 0.3s linear forwards;
@@ -597,8 +615,11 @@ input[name='priority-element'] {
     height: 10px;
     background-color: #19de97;
     border-radius: 5px;
+    margin: 10px  20px 0 20px ;
+    
+   
   }
-  .add-task-modal_bottom-elements-row {
+  .add-task-modal_bottom-elements-row,.edit-task-modal_bottom-elements-row {
     flex-direction: column;
   }
   .modal-content {
