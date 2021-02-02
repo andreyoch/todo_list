@@ -42,16 +42,15 @@ function createProjectElement(projectName, objectProjectId) {
 
   const projectBtns = project.querySelector('.project_btns');
   project.addEventListener('mouseenter', () => {
-    projectBtns.classList.add('show-project-btn')
+    projectBtns.classList.add('show-project-btn');
     projectBtns.style = 'display: block';
-    project.classList.remove('project-to-normal')
+    project.classList.remove('project-to-normal');
     project.classList.add('expand-project');
-    
   });
 
   project.addEventListener('mouseleave', () => {
     projectBtns.style = 'display: none';
-    project.classList.add('project-to-normal')
+    project.classList.add('project-to-normal');
     project.classList.remove('expand-project');
   });
 
@@ -131,7 +130,7 @@ function renderProjectPage(e) {
   const oldTasks = projectPage.querySelectorAll('.task');
   const searchInput = document.querySelector('.search-input');
   //Update search input placeholder
-    searchInput.placeholder = `Search in "${projectTitle}"`
+  searchInput.placeholder = `Search in "${projectTitle}"`;
   //Update project page title
   projectPageTitle.textContent = projectTitle;
   //Give project page actual project id
@@ -346,8 +345,7 @@ function showTaskDeleteConfirmation(e) {
   );
 }
 
-function showEditTaskModal(e) { 
-  
+function showEditTaskModal(e) {
   const editTaskModal = document.querySelector(
     '.project-page_edit-modal-window'
   );
@@ -359,7 +357,14 @@ function showEditTaskModal(e) {
   const taskDescription = task.querySelector('.task-expanded_description');
   const TaskDueDate = task.querySelector('.task-expanded_due-date');
   const taskPriorityBlock = task.querySelector('.task_priority-block');
-  const taskPriorityLine  = task.querySelector('.task-priority-line');
+
+  let taskPriorityLine = task.querySelector('.task-priority-line');
+
+  //When change text content in Task titile,task priority line-removed
+  if (taskPriorityLine === null) {
+    taskPriorityLine = document.createElement('div');
+    taskPriorityLine.className = 'task-priority-line';
+  }
 
   //Update data in editModal form
   const editTaskModalTitle = editTaskModal.querySelector(
@@ -381,12 +386,9 @@ function showEditTaskModal(e) {
   );
   editTaskModal.style = 'display: block';
 
-  
-
   saveModalBtn.addEventListener(
     'click',
     () => {
-      
       let priorityColor;
       taskPriorityBtns.forEach((el) => {
         if (el.checked) {
@@ -399,7 +401,10 @@ function showEditTaskModal(e) {
       const newDueDate = editTaskModalDateField.value;
 
       //Update info in task html element
-      taskTitle.textContent = newTaskTitle
+      taskTitle.textContent = newTaskTitle;
+      /*Append element with property color,because we removed taskPriorityLine el 
+      after changing text content on TaskTitle */
+      taskTitle.append(taskPriorityLine);
       taskDescription.textContent = newTaskDescription;
       TaskDueDate.textContent = newDueDate;
 
@@ -421,7 +426,7 @@ function showEditTaskModal(e) {
           backgroundColor = '#e72525';
           break;
       }
-      
+
       taskPriorityBlock.style = `background-color: ${backgroundColor} `;
       taskPriorityLine.style = `background-color: ${backgroundColor} `;
 
