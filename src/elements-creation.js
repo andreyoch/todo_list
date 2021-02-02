@@ -268,7 +268,6 @@ function createTaskElement(name, description, dueDute, priorityColor, id) {
 
   //Show edit modal if click on edit task btn
   editBtn.addEventListener('click', showEditTaskModal);
-
   return task;
 }
 
@@ -348,6 +347,8 @@ function showEditTaskModal(e) {
   const taskTitle = task.querySelector('.task_title');
   const taskDescription = task.querySelector('.task-expanded_description');
   const TaskDueDate = task.querySelector('.task-expanded_due-date');
+  const taskPriorityBlock = task.querySelector('.task_priority-block');
+  const taskPriorityLine  = task.querySelector('.task-priority-line');
 
   //Update data in editModal form
   const editTaskModalTitle = editTaskModal.querySelector(
@@ -391,8 +392,27 @@ function showEditTaskModal(e) {
       taskDescription.textContent = newTaskDescription;
       TaskDueDate.textContent = newDueDate;
 
-
+      let backgroundColor;
+      switch (priorityColor) {
+        case 'green':
+          backgroundColor = '#19de97';
+          break;
+        case 'blue':
+          backgroundColor = '#254fe7';
+          break;
+        case 'yellow':
+          backgroundColor = '#f0dc27';
+          break;
+        case 'purple':
+          backgroundColor = '#6f3ebe';
+          break;
+        case 'red':
+          backgroundColor = '#e72525';
+          break;
+      }
       
+      taskPriorityBlock.style = `background-color: ${backgroundColor} `;
+      taskPriorityLine.style = `background-color: ${backgroundColor} `;
 
       //Update info in storage
       Storage.updateTaskInfo(
