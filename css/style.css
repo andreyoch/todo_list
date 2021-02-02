@@ -111,6 +111,34 @@
   outline: none;
 }
 
+.expand-project {
+  animation: project-expand 0.3s linear forwards;
+  -webkit-animation: project-expand 0.3s linear forwards;
+}
+.project-to-normal {
+  animation: project-to-normal 0.3s linear forwards;
+  -webkit-animation: project-to-normal 0.3s linear forwards;
+}
+
+ @keyframes project-expand {
+  
+  0% {
+  }
+
+  100% {
+    height: 140px;
+  }
+ }
+ @keyframes project-to-normal {
+  
+  0% {
+    height: 140px;
+  }
+
+  100% {
+    height:98px;
+  }
+ }
 .project:hover {
   background-color: var(--main-background-color);
 }
