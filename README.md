@@ -2,7 +2,7 @@
 Todolist is web page,where you can create,save,edit and delete your projects and tasks
 
 ## How to start
-To start please click on the [LINK](https://andreyoch.github.io/todo_list/index.html)
+To start please click on the [LINK](https://andreyoch.github.io/todo_list/)
 
 
 ## Contributing
