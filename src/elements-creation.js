@@ -9,7 +9,7 @@ function createProjectElement(projectName, objectProjectId) {
 
   const projectNumberOfTasks = document.createElement('div');
   projectNumberOfTasks.className = 'project_number-of-tasks';
-  projectNumberOfTasks.textContent = `Tasks : ${getNumberOfTasks(
+  projectNumberOfTasks.textContent = `Tasks : ${Storage.getNumberOfTasks(
     objectProjectId
   )}`;
 
@@ -226,7 +226,7 @@ function createTaskElement(name, description, dueDute, priorityColor, id) {
 
   const taskDueDate = document.createElement('div');
   taskDueDate.className = 'task-expanded_due-date';
-  taskDueDate.textContent = dueDute;
+  taskDueDate.textContent = `Due: ${dueDute}`;
 
   const taskBtnsRow = document.createElement('div');
   taskBtnsRow.className = 'task-expanded_btns-row';
@@ -285,22 +285,6 @@ function addTaskElementToPage(task) {
   const projectPageRow = document.querySelector('.project-page_row');
 
   projectPageRow.append(task);
-}
-
-function getNumberOfTasks(projectId) {
-  let numberOfTasks;
-  projectId = Number.parseInt(projectId);
-  const projects = Storage.getProjects();
-  for (const project of projects) {
-    for (const key in project) {
-      if (key === 'id') {
-        if (projectId === project['id']) {
-          numberOfTasks = project['numberOfTasks'];
-          return numberOfTasks;
-        }
-      }
-    }
-  }
 }
 
 function showTaskDeleteConfirmation(e) {

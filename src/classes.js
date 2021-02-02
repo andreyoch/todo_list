@@ -89,6 +89,21 @@ class Storage {
     }
     return tasks;
   }
+  static getNumberOfTasks(projectId) {
+    let numberOfTasks;
+    projectId = Number.parseInt(projectId);
+    const projects = Storage.getProjects();
+    for (const project of projects) {
+      for (const key in project) {
+        if (key === 'id') {
+          if (projectId === project['id']) {
+            numberOfTasks = project['numberOfTasks'];
+            return numberOfTasks;
+          }
+        }
+      }
+    }
+  }
 
   static updateTasksArray(projectId, newTasks, action) {
     projectId = Number.parseInt(projectId);
