@@ -128,15 +128,18 @@ function renderProjectPage(e) {
   const projectPageTitle = projectPage.querySelector('.project-page_title');
   const projectIdProjectPageEl = projectPage.querySelector('.project-id');
   const oldTasks = projectPage.querySelectorAll('.task');
+  const mobileMenu = document.querySelector('.mobile-menu-window');
+  const mobileSearchInput = mobileMenu.querySelector('.search-input')
   const searchInput = document.querySelector('.search-input');
   //Update search input placeholder
   searchInput.placeholder = `Search in "${projectTitle}"`;
+  mobileSearchInput.placeholder = `Search in "${projectTitle}"`
   //Update project page title
   projectPageTitle.textContent = projectTitle;
   //Give project page actual project id
   projectIdProjectPageEl.textContent = projectId;
   //Remove Old taskElements
-  if (oldTasks.length > 1) {
+  if (oldTasks.length > 0) {
     oldTasks.forEach((taskElement) => taskElement.remove());
   }
   tasks.forEach((task) => {
