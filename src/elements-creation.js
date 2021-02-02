@@ -122,11 +122,18 @@ function showProjectDeleteConfirmation(e) {
 
 function renderProjectPage(e) {
   const project = e.target.parentElement;
+  const projectTitle = project.querySelector('.project_title').textContent;
   const projectId = project.querySelector('.project-id').textContent;
   const tasks = Storage.getTasks(projectId);
   const projectPage = document.querySelector('.project-page');
+  const projectPageTitle = projectPage.querySelector('.project-page_title');
   const projectIdProjectPageEl = projectPage.querySelector('.project-id');
   const oldTasks = projectPage.querySelectorAll('.task');
+  const searchInput = document.querySelector('.search-input');
+  //Update search input placeholder
+    searchInput.placeholder = `Search in "${projectTitle}"`
+  //Update project page title
+  projectPageTitle.textContent = projectTitle;
   //Give project page actual project id
   projectIdProjectPageEl.textContent = projectId;
   //Remove Old taskElements
