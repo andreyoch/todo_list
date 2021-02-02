@@ -42,13 +42,17 @@ function createProjectElement(projectName, objectProjectId) {
 
   const projectBtns = project.querySelector('.project_btns');
   project.addEventListener('mouseenter', () => {
+    projectBtns.classList.add('show-project-btn')
     projectBtns.style = 'display: block';
-    project.style = 'height: 140px';
+    project.classList.remove('project-to-normal')
+    project.classList.add('expand-project');
+    
   });
 
   project.addEventListener('mouseleave', () => {
     projectBtns.style = 'display: none';
-    project.style = 'height: 98px';
+    project.classList.add('project-to-normal')
+    project.classList.remove('expand-project');
   });
 
   projectTitle.addEventListener('click', renderProjectPage);
