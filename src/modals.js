@@ -28,6 +28,13 @@ function activateModals() {
   const createTaskModalBtn = document.querySelector(
     '.create-task-modal-window_btn'
   );
+  const editTaskModalCloseBtn = document.querySelector('.edit-task-modal-close');
+  const editTaskModal = document.querySelector('.project-page_edit-modal-window');
+
+  editTaskModalCloseBtn.addEventListener('click',() => {
+    editTaskModal.style = 'display: none';
+    
+  })
 
   editModalCloseBtn.addEventListener(
     'click',
@@ -156,6 +163,12 @@ function activateModals() {
   window.addEventListener('click', (e) => {
     if (e.target.className === 'project-page_modal-window modal-window') {
       addTaskModal.style = 'display: none';
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target.className === 'project-page_edit-modal-window modal-window') {
+      editTaskModal.style = 'display: none';
     }
   });
 }
